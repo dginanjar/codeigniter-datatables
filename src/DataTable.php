@@ -2,6 +2,8 @@
 
 namespace Dginanjar\CodeIgniterDataTable;
 
+use Config\Services;
+
 class DataTable
 {
     protected static $model;

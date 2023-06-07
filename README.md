@@ -22,7 +22,7 @@ use CodeIgniter\Model;
 
 class Foo extends Model
 {
-    use Dginanjar\CodeIgniterDataTable\Trait\DataTable;
+    use \Dginanjar\CodeIgniterDataTable\Trait\DataTable;
 
     protected $table = 'foo';
     ...
