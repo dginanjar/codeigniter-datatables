@@ -1,0 +1,13 @@
+{
+    "name": "dginanjar/codeigniter-datatables",
+    "type": "library",
+    "description": "Integrate DataTables to CodeIgniter",
+    "keywords": ["codeigniter", "datatables", "datatable"],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Dginanjar\\CodeIgniterDataTable\\": "src/"
+        }
+    }
+}
