@@ -16,8 +16,8 @@ class DataTable
         self::filtering();
         self::ordering();
 
+        $recordsFiltered = count(self::$model->builder()->get(null, 0, false)->getResult());
         $records = self::$model->findAll(self::$length, self::$start);
-        $recordsFiltered = self::$model->countAllResults(false);
         $recordsTotal = count($model->findAll());
 
         return [
