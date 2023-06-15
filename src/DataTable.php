@@ -13,9 +13,12 @@ class DataTable
     {
         self::init($model);
 
-        $recordsTotal = count($model->builder()->get(null, 0, false)->getResult());
-        $recordsFiltered = self::filtering()->countAllResults(false);
-        $records = self::getRecords();
+        self::filtering();
+        self::ordering();
+
+        $records = self::$model->findAll(self::$length, self::$start);
+        $recordsFiltered = self::$model->countAllResults(false);
+        $recordsTotal = count($model->findAll());
 
         return [
             'draw' => self::$draw,
@@ -42,9 +45,9 @@ class DataTable
 
         foreach (self::$columns as $column) {
             if ($column['searchable'] === 'true') {
-                self::$model->orLike($column['data'], self::$search['value']);
+                self::$model->orHavingLike($column['data'], self::$search['value']);
                 if (!empty($column['search']['value'])) {
-                    self::$model->like($column['data'], $column['search']['value']);
+                    self::$model->havingLike($column['data'], $column['search']['value']);
                 }
             }
         }
@@ -65,6 +68,6 @@ class DataTable
 
     protected static function getRecords()
     {
-        return self::ordering(self::filtering())->builder()->get(self::$length, self::$start, false)->getResult();
+        return self::ordering(self::filtering())->findAll(self::$length, self::$start);
     }
 }
